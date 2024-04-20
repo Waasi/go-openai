@@ -30,6 +30,14 @@ type Assistant struct {
 	httpHeader
 }
 
+type AssistantToolResources struct {
+	FileSearch FileSearchToolResource `json:"file_search"`
+}
+
+type FileSearchToolResource struct {
+	FileIDs []string `json:"file_ids,omitempty"`
+}
+
 type AssistantToolType string
 
 const (
@@ -50,13 +58,14 @@ type AssistantTool struct {
 // If Tools is empty slice it will effectively delete all of the Assistant's tools.
 // If Tools is populated, it will replace all of the existing Assistant's tools with the provided tools.
 type AssistantRequest struct {
-	Model        string          `json:"model"`
-	Name         *string         `json:"name,omitempty"`
-	Description  *string         `json:"description,omitempty"`
-	Instructions *string         `json:"instructions,omitempty"`
-	Tools        []AssistantTool `json:"-"`
-	FileIDs      []string        `json:"file_ids,omitempty"`
-	Metadata     map[string]any  `json:"metadata,omitempty"`
+	Model          string                 `json:"model"`
+	Name           *string                `json:"name,omitempty"`
+	Description    *string                `json:"description,omitempty"`
+	Instructions   *string                `json:"instructions,omitempty"`
+	Tools          []AssistantTool        `json:"-"`
+	FileIDs        []string               `json:"file_ids,omitempty"`
+	ToolsResources AssistantToolResources `json:"tool_resources,omitempty"`
+	Metadata       map[string]any         `json:"metadata,omitempty"`
 }
 
 // MarshalJSON provides a custom marshaller for the assistant request to handle the API use cases
