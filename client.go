@@ -95,6 +95,12 @@ func withBetaAssistantV1() requestOption {
 	}
 }
 
+func withBetaAssistantV2() requestOption {
+	return func(args *requestOptions) {
+		args.header.Set("OpenAI-Beta", "assistants=v2")
+	}
+}
+
 func (c *Client) newRequest(ctx context.Context, method, url string, setters ...requestOption) (*http.Request, error) {
 	// Default Options
 	args := &requestOptions{
@@ -190,9 +196,6 @@ func (c *Client) setCommonHeaders(req *http.Request) {
 	}
 	if c.config.OrgID != "" {
 		req.Header.Set("OpenAI-Organization", c.config.OrgID)
-	}
-	if c.config.AssistantsBetaEnabled {
-		req.Header.Set("OpenAI-Beta", "assistants=v2")
 	}
 }
 
