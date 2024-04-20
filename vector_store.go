@@ -51,7 +51,7 @@ type VectorStoreRequest struct {
 
 // CreateVectorStore creates a new vectorStore.
 func (c *Client) CreateVectorStore(ctx context.Context, request VectorStoreRequest) (response VectorStore, err error) {
-	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(vectorStoreSuffix), withBody(request))
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(vectorStoreSuffix), withBody(request), withBetaAssistantV2())
 	if err != nil {
 		return
 	}
@@ -67,7 +67,7 @@ func (c *Client) ModifyVectorStore(
 	request VectorStoreRequest,
 ) (response VectorStore, err error) {
 	urlSuffix := fmt.Sprintf("%s/%s", vectorStoreSuffix, vectorStoreID)
-	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix), withBody(request))
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix), withBody(request), withBetaAssistantV2())
 	if err != nil {
 		return
 	}
