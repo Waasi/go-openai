@@ -35,6 +35,7 @@ const (
 	AssistantToolTypeCodeInterpreter AssistantToolType = "code_interpreter"
 	AssistantToolTypeRetrieval       AssistantToolType = "retrieval"
 	AssistantToolTypeFunction        AssistantToolType = "function"
+	AssistantToolTypeFileSearch      AssistantToolType = "file_search" // beta
 )
 
 type AssistantTool struct {
