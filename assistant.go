@@ -35,7 +35,7 @@ type AssistantToolResources struct {
 }
 
 type FileSearchToolResource struct {
-	FileIDs []string `json:"file_ids,omitempty"`
+	VectorStoreIDs []string `json:"vector_store_ids,omitempty"`
 }
 
 type AssistantToolType string
