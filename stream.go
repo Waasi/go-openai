@@ -47,3 +47,34 @@ func (c *Client) CreateCompletionStream(
 	}
 	return
 }
+
+func (c *Client) CreateRunStream(
+	ctx context.Context,
+	request Run,
+) (stream *RunStream, err error) {
+	urlSuffix := fmt.Sprintf("/threads/%s/runs", threadID)
+	if !checkEndpointSupportsModel(urlSuffix, request.Model) {
+		err = ErrCompletionUnsupportedModel
+		return
+	}
+
+	if !checkPromptType(request.Prompt) {
+		err = ErrCompletionRequestPromptTypeNotSupported
+		return
+	}
+
+	request.Stream = true
+	req, err := c.newRequest(ctx, "POST", c.fullURL(urlSuffix, request.Model), withBody(request))
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := sendRequestStream[CompletionResponse](c, req)
+	if err != nil {
+		return
+	}
+	stream = &CompletionStream{
+		streamReader: resp,
+	}
+	return
+}
