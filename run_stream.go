@@ -2,6 +2,7 @@ package openai
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 )
 
@@ -27,9 +28,10 @@ type RunStream struct {
 // stream terminated by a data: [DONE] message.
 func (c *Client) CreateRunStream(
 	ctx context.Context,
+	threadID string,
 	request RunRequest,
 ) (stream *RunStream, err error) {
-	urlSuffix := chatCompletionsSuffix
+	urlSuffix := fmt.Sprintf("/threads/%s/runs", threadID)
 	if !checkEndpointSupportsModel(urlSuffix, request.Model) {
 		err = ErrChatCompletionInvalidModel
 		return
