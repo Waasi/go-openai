@@ -87,6 +87,7 @@ type RunRequest struct {
 	Instructions           string         `json:"instructions,omitempty"`
 	AdditionalInstructions string         `json:"additional_instructions,omitempty"`
 	Tools                  []Tool         `json:"tools,omitempty"`
+	Stream                 *bool          `json:"stream,omitempty"`
 	Metadata               map[string]any `json:"metadata,omitempty"`
 
 	// Sampling temperature between 0 and 2. Higher values like 0.8 are  more random.
