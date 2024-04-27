@@ -25,7 +25,7 @@ type RunStream struct {
 // support. It sets whether to stream back partial progress. If set, tokens will be
 // sent as data-only server-sent events as they become available, with the
 // stream terminated by a data: [DONE] message.
-func (c *Client) CreateRunCompletionStream(
+func (c *Client) CreateRunStream(
 	ctx context.Context,
 	request RunRequest,
 ) (stream *RunStream, err error) {
