@@ -7,11 +7,13 @@ import (
 )
 
 type RunStreamResponse struct {
-	ID      string           `json:"id"`
-	Object  string           `json:"object"`
-	Created int64            `json:"created"`
-	Model   string           `json:"model"`
-	Content []MessageContent `json:"content"`
+	ID             string             `json:"id"`
+	Status         string             `json:"status"`
+	RequiredAction *RunRequiredAction `json:"required_action,omitempty"`
+	Object         string             `json:"object"`
+	Created        int64              `json:"created"`
+	Model          string             `json:"model"`
+	Content        []MessageContent   `json:"content"`
 }
 
 // ChatCompletionStream
