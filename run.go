@@ -333,7 +333,7 @@ func (c *Client) SubmitToolOutputs(
 		http.MethodPost,
 		c.fullURL(urlSuffix),
 		withBody(request),
-		withBetaAssistantV1(),
+		withBetaAssistantV2(),
 	)
 	if err != nil {
 		return
