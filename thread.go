@@ -52,7 +52,7 @@ type ThreadDeleteResponse struct {
 // CreateThread creates a new thread.
 func (c *Client) CreateThread(ctx context.Context, request ThreadRequest) (response Thread, err error) {
 	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(threadsSuffix), withBody(request),
-		withBetaAssistantV1())
+		withBetaAssistantV2())
 	if err != nil {
 		return
 	}
@@ -65,7 +65,7 @@ func (c *Client) CreateThread(ctx context.Context, request ThreadRequest) (respo
 func (c *Client) RetrieveThread(ctx context.Context, threadID string) (response Thread, err error) {
 	urlSuffix := threadsSuffix + "/" + threadID
 	req, err := c.newRequest(ctx, http.MethodGet, c.fullURL(urlSuffix),
-		withBetaAssistantV1())
+		withBetaAssistantV2())
 	if err != nil {
 		return
 	}
@@ -82,7 +82,7 @@ func (c *Client) ModifyThread(
 ) (response Thread, err error) {
 	urlSuffix := threadsSuffix + "/" + threadID
 	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix), withBody(request),
-		withBetaAssistantV1())
+		withBetaAssistantV2())
 	if err != nil {
 		return
 	}
@@ -98,7 +98,7 @@ func (c *Client) DeleteThread(
 ) (response ThreadDeleteResponse, err error) {
 	urlSuffix := threadsSuffix + "/" + threadID
 	req, err := c.newRequest(ctx, http.MethodDelete, c.fullURL(urlSuffix),
-		withBetaAssistantV1())
+		withBetaAssistantV2())
 	if err != nil {
 		return
 	}

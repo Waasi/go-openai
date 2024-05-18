@@ -38,7 +38,7 @@ func (c *Client) CreateRunStream(
 	}
 
 	request.Stream = true
-	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix, request.Model), withBody(request), withBetaAssistantV1())
+	req, err := c.newRequest(ctx, http.MethodPost, c.fullURL(urlSuffix, request.Model), withBody(request), withBetaAssistantV2())
 	if err != nil {
 		return nil, err
 	}
